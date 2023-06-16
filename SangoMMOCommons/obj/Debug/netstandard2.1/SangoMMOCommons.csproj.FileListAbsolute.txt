@@ -1,0 +1,13 @@
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\bin\Debug\netstandard2.1\SangoMMOCommons.deps.json
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\bin\Debug\netstandard2.1\SangoMMOCommons.dll
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\bin\Debug\netstandard2.1\SangoMMOCommons.pdb
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\bin\Debug\netstandard2.1\SangoIOCPNet.dll
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\bin\Debug\netstandard2.1\SangoIOCPNet.pdb
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\obj\Debug\netstandard2.1\SangoMMOCommons.csproj.AssemblyReference.cache
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\obj\Debug\netstandard2.1\SangoMMOCommons.GeneratedMSBuildEditorConfig.editorconfig
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\obj\Debug\netstandard2.1\SangoMMOCommons.AssemblyInfoInputs.cache
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\obj\Debug\netstandard2.1\SangoMMOCommons.AssemblyInfo.cs
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\obj\Debug\netstandard2.1\SangoMMOCommons.csproj.CoreCompileInputs.cache
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\obj\Debug\netstandard2.1\SangoMMOCommons.csproj.CopyComplete
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\obj\Debug\netstandard2.1\SangoMMOCommons.dll
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoMMOCommons\obj\Debug\netstandard2.1\SangoMMOCommons.pdb

@@ -1,0 +1,10 @@
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoIOCPNet\bin\Debug\netstandard2.1\SangoIOCPNet.deps.json
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoIOCPNet\bin\Debug\netstandard2.1\SangoIOCPNet.dll
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoIOCPNet\bin\Debug\netstandard2.1\SangoIOCPNet.pdb
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoIOCPNet\obj\Debug\netstandard2.1\SangoIOCPNet.csproj.AssemblyReference.cache
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoIOCPNet\obj\Debug\netstandard2.1\SangoIOCPNet.GeneratedMSBuildEditorConfig.editorconfig
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoIOCPNet\obj\Debug\netstandard2.1\SangoIOCPNet.AssemblyInfoInputs.cache
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoIOCPNet\obj\Debug\netstandard2.1\SangoIOCPNet.AssemblyInfo.cs
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoIOCPNet\obj\Debug\netstandard2.1\SangoIOCPNet.csproj.CoreCompileInputs.cache
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoIOCPNet\obj\Debug\netstandard2.1\SangoIOCPNet.dll
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoIOCPNet\obj\Debug\netstandard2.1\SangoIOCPNet.pdb

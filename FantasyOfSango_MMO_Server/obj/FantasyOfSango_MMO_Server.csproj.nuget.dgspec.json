@@ -1,0 +1,215 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\FantasyOfSango_MMO_Server\\FantasyOfSango_MMO_Server.csproj": {}
+  },
+  "projects": {
+    "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\FantasyOfSango_MMO_Server\\FantasyOfSango_MMO_Server.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\FantasyOfSango_MMO_Server\\FantasyOfSango_MMO_Server.csproj",
+        "projectName": "FantasyOfSango_MMO_Server",
+        "projectPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\FantasyOfSango_MMO_Server\\FantasyOfSango_MMO_Server.csproj",
+        "packagesPath": "C:\\Users\\16022\\.nuget\\packages\\",
+        "outputPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\FantasyOfSango_MMO_Server\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\16022\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoIOCPNet\\SangoIOCPNet.csproj": {
+                "projectPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoIOCPNet\\SangoIOCPNet.csproj"
+              },
+              "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoMMOCommons\\SangoMMOCommons.csproj": {
+                "projectPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoMMOCommons\\SangoMMOCommons.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.19.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoIOCPNet\\SangoIOCPNet.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoIOCPNet\\SangoIOCPNet.csproj",
+        "projectName": "SangoIOCPNet",
+        "projectPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoIOCPNet\\SangoIOCPNet.csproj",
+        "packagesPath": "C:\\Users\\16022\\.nuget\\packages\\",
+        "outputPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoIOCPNet\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\16022\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoMMOCommons\\SangoMMOCommons.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoMMOCommons\\SangoMMOCommons.csproj",
+        "projectName": "SangoMMOCommons",
+        "projectPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoMMOCommons\\SangoMMOCommons.csproj",
+        "packagesPath": "C:\\Users\\16022\\.nuget\\packages\\",
+        "outputPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoMMOCommons\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\16022\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoIOCPNet\\SangoIOCPNet.csproj": {
+                "projectPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoIOCPNet\\SangoIOCPNet.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "protobuf-net": {
+              "target": "Package",
+              "version": "[3.2.16, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
