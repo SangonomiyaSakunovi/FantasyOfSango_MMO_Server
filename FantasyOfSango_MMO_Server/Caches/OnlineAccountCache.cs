@@ -97,17 +97,21 @@ namespace FantasyOfSango_MMO_Server.Caches
         #region UpdateAOIAccount
         public void UpdateOnlineAccountAOIInfo(string account, SceneCode sceneCode, float x, float z)
         {
-            lock (account)
+            try
             {
-                AOISceneGrid aoiSceneGridCurrent = DictTool.GetDictValue<string, ClientPeer>(account, OnlineAccountDict).AOISceneGrid;
-                AOISceneGrid aoiSceneGridTemp = AOISystem.Instance.SetAOIGrid(sceneCode, x, z);
-                if (aoiSceneGridTemp != aoiSceneGridCurrent)
+                lock (account)
                 {
-                    SetOnlineAccountAOISceneGrid(account, aoiSceneGridTemp);
-                    AddOrUpdateAOIAccountDict(account, aoiSceneGridTemp);
-                    RemoveAOIAccountDict(account, aoiSceneGridCurrent);
+                    AOISceneGrid aoiSceneGridCurrent = DictTool.GetDictValue<string, ClientPeer>(account, OnlineAccountDict).AOISceneGrid;
+                    AOISceneGrid aoiSceneGridTemp = AOISystem.Instance.SetAOIGrid(sceneCode, x, z);
+                    if (aoiSceneGridTemp != aoiSceneGridCurrent)
+                    {
+                        SetOnlineAccountAOISceneGrid(account, aoiSceneGridTemp);
+                        AddOrUpdateAOIAccountDict(account, aoiSceneGridTemp);
+                        RemoveAOIAccountDict(account, aoiSceneGridCurrent);
+                    }
                 }
             }
+            catch { }
         }
 
         private void SetOnlineAccountAOISceneGrid(string account, AOISceneGrid aoiSceneGrid)
@@ -166,9 +170,9 @@ namespace FantasyOfSango_MMO_Server.Caches
 
         public void RemoveOnlineAccount(ClientPeer clientPeer)
         {
-            lock (clientPeer)
+            try
             {
-                try
+                lock (clientPeer)
                 {
                     if (AOIAccountDict.ContainsKey(OnlineAccountDict[clientPeer.Account].AOISceneGrid))
                     {
@@ -179,8 +183,8 @@ namespace FantasyOfSango_MMO_Server.Caches
                         OnlineAccountDict.Remove(clientPeer.Account);
                     }
                 }
-                catch { }
             }
+            catch { }            
         }
 
         public List<ClientPeer> GetAllOnlinePlayerClientPeerList(string locker = "locker")
