@@ -15,7 +15,6 @@ E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\bin\Debug\
 E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\bin\Debug\net7.0\protobuf-net.Core.dll
 E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\bin\Debug\net7.0\SharpCompress.dll
 E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\bin\Debug\net7.0\Snappier.dll
-E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\bin\Debug\net7.0\System.Text.Json.dll
 E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\bin\Debug\net7.0\ZstdSharp.dll
 E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\bin\Debug\net7.0\runtimes\linux\native\libmongocrypt.so
 E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\bin\Debug\net7.0\runtimes\osx\native\libmongocrypt.dylib
@@ -35,3 +34,7 @@ E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\obj\Debug\
 E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\obj\Debug\net7.0\FantasyOfSango_MMO_Server.pdb
 E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\obj\Debug\net7.0\FantasyOfSango_MMO_Server.genruntimeconfig.cache
 E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\obj\Debug\net7.0\ref\FantasyOfSango_MMO_Server.dll
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\bin\Debug\net7.0\SangoLog.dll
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\bin\Debug\net7.0\SangoTimer.dll
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\bin\Debug\net7.0\SangoLog.pdb
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\FantasyOfSango_MMO_Server\bin\Debug\net7.0\SangoTimer.pdb

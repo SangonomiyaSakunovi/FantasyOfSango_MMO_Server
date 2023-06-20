@@ -1,44 +1,41 @@
 ﻿using FantasyOfSango_MMO_Server.Bases;
 using FantasyOfSango_MMO_Server.Caches;
-using FantasyOfSango_MMO_Server.Systems;
+using FantasyOfSango_MMO_Server.Services;
 using SangoMMOCommons.Classs;
 using SangoMMOCommons.Constants;
 using SangoMMOCommons.Enums;
 using SangoMMOCommons.Structs;
 using SangoMMOCommons.Tools;
 using SangoMMONetProtocol;
+using System.Collections.Concurrent;
 
-//Developer : SangonomiyaSakunovi
+//Developer: SangonomiyaSakunovi
 
-namespace FantasyOfSango_MMO_Server.Threads
+namespace FantasyOfSango_MMO_Server.Systems
 {
-    public class SyncPlayerTransformThreads : BaseThreads
+    public class SyncPlayerTransformSystem : BaseSystem
     {
-        private Thread _thread;
-        private Dictionary<AOISceneGrid, List<string>> AOIMovedAccountDict = new Dictionary<AOISceneGrid, List<string>>();
+        public static SyncPlayerTransformSystem Instance = null;
+        private ConcurrentDictionary<AOISceneGrid, List<string>> AOIMovedAccountDict;
 
-        public override void Run()
+        public override void InitSystem()
         {
-            _thread = new Thread(Update);
-            _thread.IsBackground = true;
-            _thread.Start();
+            base.InitSystem();
+            Instance = this;
             NetOpCode = OperationCode.SyncPlayerTransform;
+            AOIMovedAccountDict = new ConcurrentDictionary<AOISceneGrid, List<string>>();
+            TimerService.Instance.AddTickTask(200, SyncPlayerTransformCallBack, CallBack, 0);
         }
 
-        public override void Update()
-        {
-            Thread.Sleep(ThreadsConstant.SyncPlayerTransformSleep);
-            while (true)
-            {
-                Thread.Sleep(ThreadsConstant.SyncPlayerTransformTime);
-                CheckIfTheClientMoved();
-                SendAOITransform();
-            }
+        private void SyncPlayerTransformCallBack(int taskId)
+        {           
+            CheckIfTheClientMoved();
+            SendAOITransform();
         }
 
-        public override void Stop()
+        private void CallBack(int taskId)
         {
-            _thread.Abort();
+
         }
 
         private void CheckIfTheClientMoved()
@@ -54,6 +51,7 @@ namespace FantasyOfSango_MMO_Server.Threads
                     if (Vector3Position.Distance(peer.CurrentTransformOnline.Vector3Position, peer.LastTransformOnline.Vector3Position) > ThreadsConstant.SyncPlayerTransformVector3PositionDistanceLimit)
                     {
                         SetAOIMovedAccountDict(peer);
+                        SangoLog.LogTool.LogProcessing($"当前玩家: {peer.Account} ,位置发生了移动，坐标为: {peer.CurrentTransformOnline.Vector3Position.X+ ","+peer.CurrentTransformOnline.Vector3Position.Y + ", " + peer.CurrentTransformOnline.Vector3Position.Z}");
                     }
                 }
                 else
@@ -109,7 +107,7 @@ namespace FantasyOfSango_MMO_Server.Threads
             }
             else
             {
-                AOIMovedAccountDict.Add(aoiCurrent, new List<string> { peer.Account });
+                AOIMovedAccountDict.TryAdd(aoiCurrent, new List<string> { peer.Account });
             }
         }
 
@@ -132,6 +130,6 @@ namespace FantasyOfSango_MMO_Server.Threads
                 }
             }
             return aoiAccountList;
-        }
+        }       
     }
 }

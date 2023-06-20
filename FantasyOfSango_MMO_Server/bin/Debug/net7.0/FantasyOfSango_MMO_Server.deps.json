@@ -10,7 +10,9 @@
         "dependencies": {
           "MongoDB.Driver": "2.19.2",
           "SangoIOCPNet": "1.0.0",
-          "SangoMMOCommons": "1.0.0"
+          "SangoLog": "1.0.0",
+          "SangoMMOCommons": "1.0.0",
+          "SangoTimer": "1.0.0"
         },
         "runtime": {
           "FantasyOfSango_MMO_Server.dll": {}
@@ -182,12 +184,6 @@
       "System.Text.Json/7.0.3": {
         "dependencies": {
           "System.Text.Encodings.Web": "7.0.0"
-        },
-        "runtime": {
-          "lib/net7.0/System.Text.Json.dll": {
-            "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.723.27404"
-          }
         }
       },
       "ZstdSharp.Port/0.6.2": {
@@ -203,6 +199,11 @@
           "SangoIOCPNet.dll": {}
         }
       },
+      "SangoLog/1.0.0": {
+        "runtime": {
+          "SangoLog.dll": {}
+        }
+      },
       "SangoMMOCommons/1.0.0": {
         "dependencies": {
           "SangoIOCPNet": "1.0.0",
@@ -211,6 +212,11 @@
         },
         "runtime": {
           "SangoMMOCommons.dll": {}
+        }
+      },
+      "SangoTimer/1.0.0": {
+        "runtime": {
+          "SangoTimer.dll": {}
         }
       }
     }
@@ -380,7 +386,17 @@
       "serviceable": false,
       "sha512": ""
     },
+    "SangoLog/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "SangoMMOCommons/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SangoTimer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

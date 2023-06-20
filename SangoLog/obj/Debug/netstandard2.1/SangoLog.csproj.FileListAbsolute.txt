@@ -1,0 +1,10 @@
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoLog\bin\Debug\netstandard2.1\SangoLog.deps.json
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoLog\bin\Debug\netstandard2.1\SangoLog.dll
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoLog\bin\Debug\netstandard2.1\SangoLog.pdb
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoLog\obj\Debug\netstandard2.1\SangoLog.csproj.AssemblyReference.cache
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoLog\obj\Debug\netstandard2.1\SangoLog.GeneratedMSBuildEditorConfig.editorconfig
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoLog\obj\Debug\netstandard2.1\SangoLog.AssemblyInfoInputs.cache
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoLog\obj\Debug\netstandard2.1\SangoLog.AssemblyInfo.cs
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoLog\obj\Debug\netstandard2.1\SangoLog.csproj.CoreCompileInputs.cache
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoLog\obj\Debug\netstandard2.1\SangoLog.dll
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoLog\obj\Debug\netstandard2.1\SangoLog.pdb

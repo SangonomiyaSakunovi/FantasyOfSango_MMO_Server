@@ -382,6 +382,16 @@
           "bin/placeholder/SangoIOCPNet.dll": {}
         }
       },
+      "SangoLog/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/SangoLog.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SangoLog.dll": {}
+        }
+      },
       "SangoMMOCommons/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -395,6 +405,16 @@
         },
         "runtime": {
           "bin/placeholder/SangoMMOCommons.dll": {}
+        }
+      },
+      "SangoTimer/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/SangoTimer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SangoTimer.dll": {}
         }
       }
     }
@@ -1033,17 +1053,29 @@
       "path": "../SangoIOCPNet/SangoIOCPNet.csproj",
       "msbuildProject": "../SangoIOCPNet/SangoIOCPNet.csproj"
     },
+    "SangoLog/1.0.0": {
+      "type": "project",
+      "path": "../SangoLog/SangoLog.csproj",
+      "msbuildProject": "../SangoLog/SangoLog.csproj"
+    },
     "SangoMMOCommons/1.0.0": {
       "type": "project",
       "path": "../SangoMMOCommons/SangoMMOCommons.csproj",
       "msbuildProject": "../SangoMMOCommons/SangoMMOCommons.csproj"
+    },
+    "SangoTimer/1.0.0": {
+      "type": "project",
+      "path": "../SangoTimer/SangoTimer.csproj",
+      "msbuildProject": "../SangoTimer/SangoTimer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "MongoDB.Driver >= 2.19.2",
       "SangoIOCPNet >= 1.0.0",
-      "SangoMMOCommons >= 1.0.0"
+      "SangoLog >= 1.0.0",
+      "SangoMMOCommons >= 1.0.0",
+      "SangoTimer >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1082,8 +1114,14 @@
             "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoIOCPNet\\SangoIOCPNet.csproj": {
               "projectPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoIOCPNet\\SangoIOCPNet.csproj"
             },
+            "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoLog\\SangoLog.csproj": {
+              "projectPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoLog\\SangoLog.csproj"
+            },
             "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoMMOCommons\\SangoMMOCommons.csproj": {
               "projectPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoMMOCommons\\SangoMMOCommons.csproj"
+            },
+            "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoTimer\\SangoTimer.csproj": {
+              "projectPath": "E:\\FantasyOfSango\\FantasyOfSango_MMO_Server\\SangoTimer\\SangoTimer.csproj"
             }
           }
         }
@@ -1119,7 +1157,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,8 +1,8 @@
 ﻿using FantasyOfSango_MMO_Server.Caches;
 using FantasyOfSango_MMO_Server.Services;
 using FantasyOfSango_MMO_Server.Systems;
-using FantasyOfSango_MMO_Server.Threads;
 using SangoIOCPNet;
+using SangoLog;
 
 //Developer : SangonomiyaSakunovi
 
@@ -45,17 +45,22 @@ namespace FantasyOfSango_MMO_Server
 
         private void TearDownSangoServer()
         {
-            CleanThreads();
             ServerInstance.CloseServer();
             IOCPLog.Done("SangoServer is Tear Down");
         }
 
         private void InitSettings()
         {
+            InitLog();
             InitService();
             InitCache();
             InitSystem();
-            InitThreads();
+        }
+
+        private void InitLog()
+        {
+            LogConfig logConfig = new LogConfig();
+            LogTool.InitSettings(logConfig);
         }
 
         private void InitService()
@@ -66,6 +71,8 @@ namespace FantasyOfSango_MMO_Server
             mongoDBService.InitService();
             ResourceService resourceService = new ResourceService();
             resourceService.InitService();
+            TimerService timerService = new TimerService();
+            timerService.InitService();
         }
 
         private void InitCache()
@@ -96,21 +103,8 @@ namespace FantasyOfSango_MMO_Server
             itemEnhanceSystem.InitSystem();
             MissionUpdateSystem missionUpdateSystem = new MissionUpdateSystem();
             missionUpdateSystem.InitSystem();
+            SyncPlayerTransformSystem syncPlayerTransformSystem = new SyncPlayerTransformSystem();
+            syncPlayerTransformSystem.InitSystem();
         }
-
-        #region Threads
-        private SyncPlayerTransformThreads syncPlayerTransformThreads = new SyncPlayerTransformThreads();
-        private SyncEnemyLogicThreads syncEnemyLogicThreads = new SyncEnemyLogicThreads();
-
-        private void InitThreads()
-        {
-            syncPlayerTransformThreads.Run();
-        }
-
-        private void CleanThreads()
-        {
-            syncPlayerTransformThreads.Stop();
-        }
-        #endregion
     }
 }

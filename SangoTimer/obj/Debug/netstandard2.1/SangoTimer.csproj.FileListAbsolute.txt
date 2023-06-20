@@ -1,0 +1,10 @@
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoTimer\bin\Debug\netstandard2.1\SangoTimer.deps.json
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoTimer\bin\Debug\netstandard2.1\SangoTimer.dll
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoTimer\bin\Debug\netstandard2.1\SangoTimer.pdb
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoTimer\obj\Debug\netstandard2.1\SangoTimer.csproj.AssemblyReference.cache
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoTimer\obj\Debug\netstandard2.1\SangoTimer.GeneratedMSBuildEditorConfig.editorconfig
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoTimer\obj\Debug\netstandard2.1\SangoTimer.AssemblyInfoInputs.cache
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoTimer\obj\Debug\netstandard2.1\SangoTimer.AssemblyInfo.cs
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoTimer\obj\Debug\netstandard2.1\SangoTimer.csproj.CoreCompileInputs.cache
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoTimer\obj\Debug\netstandard2.1\SangoTimer.dll
+E:\FantasyOfSango\FantasyOfSango_MMO_Server\SangoTimer\obj\Debug\netstandard2.1\SangoTimer.pdb
