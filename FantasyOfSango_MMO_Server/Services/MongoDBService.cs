@@ -1,4 +1,5 @@
 ﻿using FantasyOfSango_MMO_Server.Bases;
+using FantasyOfSango_MMO_Server.Configs;
 using MongoDB.Driver;
 
 //Developer : SangonomiyaSakunovi
@@ -10,31 +11,20 @@ namespace FantasyOfSango_MMO_Server.Services
         public static MongoDBService Instance = null;
         private static IMongoClient Client;
         private static IMongoDatabase Database;
-        private const string MongoDBName = "SangoServerGameDB";
-        private const MongoDBAddress SangoMongoDBAddress = MongoDBAddress.LocalAddress;
-        private enum MongoDBAddress
-        {
-            LocalAddress,
-        }
+        private string mongoDBName;
+        private string mongoDBAddress;
+
         public override void InitService()
         {
             base.InitService();
             Instance = this;
-            string mongoDBAddress = SetMongoDBAddress(SangoMongoDBAddress);
+            mongoDBName = ServerConfig.Instance.GetMongoDBName();
+            mongoDBAddress = ServerConfig.Instance.GetMongoDBAddress();
             MongoUrlBuilder mongoUrl = new MongoUrlBuilder(mongoDBAddress);
             Client = new MongoClient(mongoUrl.ToMongoUrl());
-            Database = Client.GetDatabase(MongoDBName);
+            Database = Client.GetDatabase(mongoDBName);
         }
 
-        private string SetMongoDBAddress(MongoDBAddress address)
-        {
-            string mongoDBAddress = "";
-            if (address == MongoDBAddress.LocalAddress)
-            {
-                mongoDBAddress = "mongodb://127.0.0.1:27017";
-            }
-            return mongoDBAddress;
-        }
         #region Add Data
         public bool AddOneData<T>(T t, string collectionName) where T : class, new()
         {

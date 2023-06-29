@@ -1,4 +1,5 @@
 ﻿using FantasyOfSango_MMO_Server.Caches;
+using FantasyOfSango_MMO_Server.Configs;
 using FantasyOfSango_MMO_Server.Services;
 using FantasyOfSango_MMO_Server.Systems;
 using SangoIOCPNet;
@@ -11,22 +12,21 @@ namespace FantasyOfSango_MMO_Server
     public class SangoRoot
     {
         public static SangoRoot Instance;
-        private IOCPPeer<ClientPeer> ServerInstance;
-
-        int maxConnectCount = ServerConstant.ServerMaxConnectCount;
-        string localIPAddress = "127.0.0.1";
-        int localIPPort = 52022;
+        public IOCPPeer<ClientPeer> ServerInstance;
 
         public void InitRoot()
         {
             Instance = this;
+            InitSettings();
         }
 
         public void RunSangoServer()
         {
+            int maxConnectCount = ServerConstant.ServerMaxConnectCount;
+            string iPAddress = ServerConfig.Instance.GetIPAddress();
+            int port = ServerConfig.Instance.GetIPPort();
             ServerInstance = new IOCPPeer<ClientPeer>();
-            ServerInstance.InitServer(localIPAddress, localIPPort, maxConnectCount);
-            InitSettings();
+            ServerInstance.InitServer(iPAddress, port, maxConnectCount);            
             IOCPLog.Done("SangoServer is Run!");
             OnSangoServerRun();
         }
@@ -51,10 +51,17 @@ namespace FantasyOfSango_MMO_Server
 
         private void InitSettings()
         {
+            InitConfig();
             InitLog();
             InitService();
             InitCache();
             InitSystem();
+        }
+
+        private void InitConfig()
+        {
+            ServerConfig serverConfig = new ServerConfig();
+            serverConfig.InitConfig();
         }
 
         private void InitLog()
