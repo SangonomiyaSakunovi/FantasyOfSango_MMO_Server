@@ -28,18 +28,18 @@ namespace FantasyOfSango_MMO_Server
 
         public PeerEnhanceModeCode PeerEnhanceModeCode { get; private set; }
 
-        protected override void OnConnect()
+        protected override void OnConnected()
         {
             IOCPLog.Info("A new client is Connected.");
         }
 
-        protected override void OnDisconnect()
+        protected override void OnDisconnected()
         {
             IOCPLog.Info("A client is DisConnected.");
             OnlineAccountCache.Instance.RemoveOnlineAccount(this);
         }
 
-        protected override void OnRecieveMessage(byte[] byteMessages)
+        protected override void OnReceivedMessage(byte[] byteMessages)
         {
             SangoNetMessage sangoNetMessage = ProtobufTool.DeProtoBytes<SangoNetMessage>(byteMessages);
             switch (sangoNetMessage.MessageHead.MessageCommand)

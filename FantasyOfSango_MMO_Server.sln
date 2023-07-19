@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SangoMMOCommons", "SangoMMO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SangoTimer", "SangoTimer\SangoTimer.csproj", "{4F7AE01E-8C65-43F2-ADBE-BE5E96AF66BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SangoLog", "SangoLog\SangoLog.csproj", "{C0644203-4BA8-4BE4-9A3D-F7DF42BE5CA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SangoLog", "SangoLog\SangoLog.csproj", "{C0644203-4BA8-4BE4-9A3D-F7DF42BE5CA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

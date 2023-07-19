@@ -8,45 +8,45 @@ namespace SangoIOCPNet
 {
     public abstract class IClientPeer
     {
-        public int PeerId;
-        private SocketAsyncEventArgs receiveAsyncEventArgs;
-        private SocketAsyncEventArgs sendAsyncEventArgs;
+        public int _peerId;
+        private SocketAsyncEventArgs _receiveAsyncEventArgs;
+        private SocketAsyncEventArgs _sendAsyncEventArgs;
 
-        private Socket socket;
-        private List<byte> readList = new List<byte>();
-        private Queue<byte[]> cacheQueue = new Queue<byte[]>();
-        private bool isWrite = false;
+        private Socket _socket;
+        private List<byte> _readList = new List<byte>();
+        private Queue<byte[]> _cacheQueue = new Queue<byte[]>();
+        private bool _isWrite = false;
 
         public Action<int> OnClientPeerCloseCallBack;
-        public ConnectionStateCode ConnectionState = ConnectionStateCode.None;
+        protected ConnectionStateCode _connectionState = ConnectionStateCode.None;
 
         public IClientPeer()
         {
-            receiveAsyncEventArgs = new SocketAsyncEventArgs();
-            sendAsyncEventArgs = new SocketAsyncEventArgs();
-            receiveAsyncEventArgs.Completed += new EventHandler<SocketAsyncEventArgs>(OnIO_Completed);
-            sendAsyncEventArgs.Completed += new EventHandler<SocketAsyncEventArgs>(OnIO_Completed);
-            receiveAsyncEventArgs.SetBuffer(new byte[ServerConstant.ServerBufferCount], 0, ServerConstant.ServerBufferCount);
+            _receiveAsyncEventArgs = new SocketAsyncEventArgs();
+            _sendAsyncEventArgs = new SocketAsyncEventArgs();
+            _receiveAsyncEventArgs.Completed += new EventHandler<SocketAsyncEventArgs>(OnIO_Completed);
+            _sendAsyncEventArgs.Completed += new EventHandler<SocketAsyncEventArgs>(OnIO_Completed);
+            _receiveAsyncEventArgs.SetBuffer(new byte[ServerConstant.ServerBufferCount], 0, ServerConstant.ServerBufferCount);
         }
 
-        protected abstract void OnConnect();
+        protected abstract void OnConnected();
 
-        protected abstract void OnDisconnect();
+        protected abstract void OnDisconnected();
 
-        protected abstract void OnRecieveMessage(byte[] byteMessages);
+        protected abstract void OnReceivedMessage(byte[] byteMessages);
 
         public void InitClientPeer(Socket skt)
         {
-            IOCPLog.Info("正在初始化ClientPeer，开始异步接收");
-            socket = skt;
-            ConnectionState = ConnectionStateCode.Connected;
-            OnConnect();
+            IOCPLog.Info("Init Client Peer, starting Recieve Async.");
+            _socket = skt;
+            _connectionState = ConnectionStateCode.Connected;
+            OnConnected();
             OnReceiveAsync();
         }
 
         private void OnReceiveAsync()
         {
-            bool isConnetWaiting = socket.ReceiveAsync(receiveAsyncEventArgs);
+            bool isConnetWaiting = _socket.ReceiveAsync(_receiveAsyncEventArgs);
             if (isConnetWaiting == false)
             {
                 ProcessReceive();
@@ -55,27 +55,27 @@ namespace SangoIOCPNet
 
         private void ProcessReceive()
         {
-            if (receiveAsyncEventArgs.BytesTransferred > 0 && receiveAsyncEventArgs.SocketError == SocketError.Success)
+            if (_receiveAsyncEventArgs.BytesTransferred > 0 && _receiveAsyncEventArgs.SocketError == SocketError.Success)
             {
-                byte[] bytes = new byte[receiveAsyncEventArgs.BytesTransferred];
-                Buffer.BlockCopy(receiveAsyncEventArgs.Buffer, 0, bytes, 0, receiveAsyncEventArgs.BytesTransferred);
-                readList.AddRange(bytes);
+                byte[] bytes = new byte[_receiveAsyncEventArgs.BytesTransferred];
+                Buffer.BlockCopy(_receiveAsyncEventArgs.Buffer, 0, bytes, 0, _receiveAsyncEventArgs.BytesTransferred);
+                _readList.AddRange(bytes);
                 ProcessByteList();
                 OnReceiveAsync();
             }
             else
             {
-                IOCPLog.Warning("IClientPeer:{0}  Close:{1}", PeerId, receiveAsyncEventArgs.SocketError.ToString());
+                IOCPLog.Warning("IClientPeer:{0}  Close:{1}", _peerId, _receiveAsyncEventArgs.SocketError.ToString());
                 OnClientClose();
             }
         }
 
         private void ProcessByteList()
         {
-            byte[] byteMessages = IOCPTool.SplitLogicBytes(ref readList);
+            byte[] byteMessages = IOCPTool.SplitLogicBytes(ref _readList);
             if (byteMessages != null)
             {
-                OnRecieveMessage(byteMessages);
+                OnReceivedMessage(byteMessages);
                 ProcessByteList();
             }
         }
@@ -93,19 +93,19 @@ namespace SangoIOCPNet
 
         public bool SendPackMessage(byte[] bytePackMessages)
         {
-            if (ConnectionState != ConnectionStateCode.Connected)
+            if (_connectionState != ConnectionStateCode.Connected)
             {
                 IOCPLog.Warning("Connection is break, can`t send net message.");
                 return false;
             }
-            if (isWrite)
+            if (_isWrite)
             {
-                cacheQueue.Enqueue(bytePackMessages);
+                _cacheQueue.Enqueue(bytePackMessages);
                 return true;
             }
-            isWrite = true;
-            sendAsyncEventArgs.SetBuffer(bytePackMessages, 0, bytePackMessages.Length);
-            bool isSendWaiting = socket.SendAsync(sendAsyncEventArgs);
+            _isWrite = true;
+            _sendAsyncEventArgs.SetBuffer(bytePackMessages, 0, bytePackMessages.Length);
+            bool isSendWaiting = _socket.SendAsync(_sendAsyncEventArgs);
             if (isSendWaiting == false)
             {
                 ProcessSend();
@@ -115,38 +115,38 @@ namespace SangoIOCPNet
 
         private void ProcessSend()
         {
-            if (sendAsyncEventArgs.SocketError == SocketError.Success)
+            if (_sendAsyncEventArgs.SocketError == SocketError.Success)
             {
-                isWrite = false;
-                if (cacheQueue.Count > 0)
+                _isWrite = false;
+                if (_cacheQueue.Count > 0)
                 {
-                    byte[] item = cacheQueue.Dequeue();
+                    byte[] item = _cacheQueue.Dequeue();
                     SendPackMessage(item);
                 }
             }
             else
             {
-                IOCPLog.Error("Process Send Error: {0}", sendAsyncEventArgs.SocketError.ToString());
+                IOCPLog.Error("Process Send Error: {0}", _sendAsyncEventArgs.SocketError.ToString());
                 OnClientClose();
             }
         }
 
         public void OnClientClose()
         {
-            if (socket != null)
+            if (_socket != null)
             {
-                ConnectionState = ConnectionStateCode.Disconnected;
-                OnDisconnect();
+                _connectionState = ConnectionStateCode.Disconnected;
+                OnDisconnected();
                 if (OnClientPeerCloseCallBack != null)
                 {
-                    OnClientPeerCloseCallBack(PeerId);
+                    OnClientPeerCloseCallBack(_peerId);
                 }
-                readList.Clear();
-                cacheQueue.Clear();
-                isWrite = false;
+                _readList.Clear();
+                _cacheQueue.Clear();
+                _isWrite = false;
                 try
                 {
-                    socket.Shutdown(SocketShutdown.Send);
+                    _socket.Shutdown(SocketShutdown.Send);
                 }
                 catch (Exception e)
                 {
@@ -154,8 +154,8 @@ namespace SangoIOCPNet
                 }
                 finally
                 {
-                    socket.Close();
-                    socket = null;
+                    _socket.Close();
+                    _socket = null;
                     IOCPLog.Done("Client is Offline");
                 }
             }

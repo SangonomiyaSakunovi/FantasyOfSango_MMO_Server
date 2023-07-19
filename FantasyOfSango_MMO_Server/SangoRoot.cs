@@ -26,7 +26,7 @@ namespace FantasyOfSango_MMO_Server
             string iPAddress = ServerConfig.Instance.GetIPAddress();
             int port = ServerConfig.Instance.GetIPPort();
             ServerInstance = new IOCPPeer<ClientPeer>();
-            ServerInstance.InitServer(iPAddress, port, maxConnectCount);            
+            ServerInstance.StartAsServer(iPAddress, port, maxConnectCount);            
             IOCPLog.Done("SangoServer is Run!");
             OnSangoServerRun();
         }

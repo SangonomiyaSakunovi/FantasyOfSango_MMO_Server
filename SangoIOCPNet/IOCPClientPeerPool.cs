@@ -6,19 +6,19 @@ namespace SangoIOCPNet
 {
     public class IOCPClientPeerPool<T> where T : IClientPeer, new()
     {
-        private Stack<T> clientPeerStack;
-        public int Size => clientPeerStack.Count;
+        private Stack<T> _clientPeerStack;
+        public int Size => _clientPeerStack.Count;
 
         public IOCPClientPeerPool(int capacity)
         {
-            clientPeerStack = new Stack<T>(capacity);
+            _clientPeerStack = new Stack<T>(capacity);
         }
 
         public T Pop()
         {
-            lock (clientPeerStack)
+            lock (_clientPeerStack)
             {
-                return clientPeerStack.Pop();
+                return _clientPeerStack.Pop();
             }
         }
 
@@ -28,9 +28,9 @@ namespace SangoIOCPNet
             {
                 IOCPLog.Error("The clientPeer to pool can`t be null");
             }
-            lock (clientPeerStack)
+            lock (_clientPeerStack)
             {
-                clientPeerStack.Push(peer);
+                _clientPeerStack.Push(peer);
             }
         }
     }

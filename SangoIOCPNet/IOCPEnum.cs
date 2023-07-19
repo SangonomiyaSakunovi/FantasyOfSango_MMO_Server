@@ -10,18 +10,13 @@ namespace SangoIOCPNet
         Blue,
         Cyan,
         Magenta,
-        Yellow,
+        Yellow
     }
 
     public enum ConnectionStateCode
     {
         None,
         Disconnected,
-        Connecting,
-        Connected,
-        Disconnecting,
-        DisposeDisconnecting,
-        Disposed,
-        Initializing
+        Connected       
     }
 }

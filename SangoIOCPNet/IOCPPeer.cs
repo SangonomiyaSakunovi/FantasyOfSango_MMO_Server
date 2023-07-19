@@ -10,29 +10,30 @@ namespace SangoIOCPNet
 {
     public class IOCPPeer<T> where T : IClientPeer, new()
     {
-        private Socket socket;
-        private SocketAsyncEventArgs socketAsyncEventArgs;
+        private Socket _socket;
+        private SocketAsyncEventArgs _socketAsyncEventArgs;
 
         public IOCPPeer()
         {
-            socketAsyncEventArgs = new SocketAsyncEventArgs();
-            socketAsyncEventArgs.Completed += new EventHandler<SocketAsyncEventArgs>(OnIO_Completed);
+            _socketAsyncEventArgs = new SocketAsyncEventArgs();
+            _socketAsyncEventArgs.Completed += new EventHandler<SocketAsyncEventArgs>(OnIO_Completed);
         }
 
         #region Client
         public T ClientPeer;
 
-        public void InitClient(string ip, int port)
+        public void StartAsClient(string ip, int port)
         {
+            IOCPLog.Start("Start as Client.");
             IPEndPoint point = new IPEndPoint(IPAddress.Parse(ip), port);
-            socket = new Socket(point.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            socketAsyncEventArgs.RemoteEndPoint = point;
+            _socket = new Socket(point.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            _socketAsyncEventArgs.RemoteEndPoint = point;
             OnConnect();
         }
 
         private void OnConnect()
         {
-            bool isConnetWaiting = socket.ConnectAsync(socketAsyncEventArgs);
+            bool isConnetWaiting = _socket.ConnectAsync(_socketAsyncEventArgs);
             if (isConnetWaiting == false)
             {
                 ProcessConnect();
@@ -42,7 +43,7 @@ namespace SangoIOCPNet
         private void ProcessConnect()
         {
             ClientPeer = new T();
-            ClientPeer.InitClientPeer(socket);
+            ClientPeer.InitClientPeer(_socket);
         }
 
         public void CloseClient()
@@ -52,49 +53,50 @@ namespace SangoIOCPNet
                 ClientPeer.OnClientClose();
                 ClientPeer = null;
             }
-            if (socket != null)
+            if (_socket != null)
             {
-                socket = null;
+                _socket = null;
             }
         }
         #endregion
 
         #region Server
-        private int currentConnectCount = 0;
-        public int backLog = ServerConstant.ServerBackLogCount;
-        public int maxConnectCount = ServerConstant.ServerMaxConnectCount;
+        private int _currentConnectCount = 0;
+        private int _backLog = ServerConstant.ServerBackLogCount;
+        private int _maxConnectCount = ServerConstant.ServerMaxConnectCount;
 
-        private Semaphore acceptSeamaphore;
-        private IOCPClientPeerPool<T> peerPool;
-        private List<T> peerList;
+        private Semaphore _acceptSeamaphore;
+        private IOCPClientPeerPool<T> _peerPool;
+        private List<T> _peerList;
 
-        public void InitServer(string ip, int port, int maxConnectCount)
+        public void StartAsServer(string ip, int port, int maxConnectCount)
         {
-            currentConnectCount = 0;
-            acceptSeamaphore = new Semaphore(maxConnectCount, maxConnectCount);
-            peerPool = new IOCPClientPeerPool<T>(maxConnectCount);
+            IOCPLog.Start("Start as Server.");
+            _currentConnectCount = 0;
+            _acceptSeamaphore = new Semaphore(maxConnectCount, maxConnectCount);
+            _peerPool = new IOCPClientPeerPool<T>(maxConnectCount);
             for (int i = 0; i < maxConnectCount; i++)
             {
                 T peer = new T
                 {
-                    PeerId = i,
+                    _peerId = i,
                 };
-                peerPool.Push(peer);
+                _peerPool.Push(peer);
             }
-            peerList = new List<T>();
+            _peerList = new List<T>();
             IPEndPoint point = new IPEndPoint(IPAddress.Parse(ip), port);
-            socket = new Socket(point.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            socket.Bind(point);
-            socket.Listen(backLog);
+            _socket = new Socket(point.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            _socket.Bind(point);
+            _socket.Listen(_backLog);
             IOCPLog.Done("IOCPServer is Init");
             OnAccept();
         }
 
         private void OnAccept()
         {
-            socketAsyncEventArgs.AcceptSocket = null;
-            acceptSeamaphore.WaitOne();
-            bool isAcceptWaiting = socket.AcceptAsync(socketAsyncEventArgs);
+            _socketAsyncEventArgs.AcceptSocket = null;
+            _acceptSeamaphore.WaitOne();
+            bool isAcceptWaiting = _socket.AcceptAsync(_socketAsyncEventArgs);
             if (isAcceptWaiting == false)
             {
                 ProcessAccept();
@@ -103,39 +105,39 @@ namespace SangoIOCPNet
 
         private void ProcessAccept()
         {
-            Interlocked.Increment(ref currentConnectCount);
-            T peer = peerPool.Pop();
-            lock (peerList)
+            Interlocked.Increment(ref _currentConnectCount);
+            T peer = _peerPool.Pop();
+            lock (_peerList)
             {
-                peerList.Add(peer);
+                _peerList.Add(peer);
             }
-            peer.InitClientPeer(socketAsyncEventArgs.AcceptSocket);
+            peer.InitClientPeer(_socketAsyncEventArgs.AcceptSocket);
             peer.OnClientPeerCloseCallBack = RecycleClientPeerPool;
-            IOCPLog.Done("Client Online, allocate ClientId:{0}", peer.PeerId);
+            IOCPLog.Done("Client Online, allocate ClientId:{0}", peer._peerId);
             OnAccept();
         }
 
         public void CloseServer()
         {
-            for (int i = 0; i < peerList.Count; i++)
+            for (int i = 0; i < _peerList.Count; i++)
             {
-                peerList[i].OnClientClose();
+                _peerList[i].OnClientClose();
             }
-            peerList.Clear();
-            peerList = null;
-            if (socket != null)
+            _peerList.Clear();
+            _peerList = null;
+            if (_socket != null)
             {
-                socket.Close();
-                socket = null;
+                _socket.Close();
+                _socket = null;
             }
         }
 
         private void RecycleClientPeerPool(int peerId)
         {
             int index = -1;
-            for (int i = 0; i < peerList.Count; i++)
+            for (int i = 0; i < _peerList.Count; i++)
             {
-                if (peerList[i].PeerId == peerId)
+                if (_peerList[i]._peerId == peerId)
                 {
                     index = i;
                     break;
@@ -143,13 +145,13 @@ namespace SangoIOCPNet
             }
             if (index != -1)
             {
-                peerPool.Push(peerList[index]);
-                lock (peerList)
+                _peerPool.Push(_peerList[index]);
+                lock (_peerList)
                 {
-                    peerList.RemoveAt(index);
+                    _peerList.RemoveAt(index);
                 }
-                Interlocked.Decrement(ref currentConnectCount);
-                acceptSeamaphore.Release();
+                Interlocked.Decrement(ref _currentConnectCount);
+                _acceptSeamaphore.Release();
             }
             else
             {
@@ -159,7 +161,7 @@ namespace SangoIOCPNet
 
         public List<T> GetAllClientPeerList()
         {
-            return peerList;
+            return _peerList;
         }
         #endregion
 
